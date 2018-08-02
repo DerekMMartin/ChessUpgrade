@@ -115,6 +115,58 @@ namespace WpfChess.ChessModel
             return true;
         }
 
+        public void Make960()
+        {
+            List<int> Positions = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7 };
+            Random randy = new Random();
+            //First Bishop
+            int BisOne = randy.Next(4)*2;
+            Positions.Remove(BisOne);
+            Console.Write(BisOne);
+            this[0, BisOne].Figure = new BishopFigure(true, this[0, BisOne]);
+            this[7, BisOne].Figure = new BishopFigure(false, this[7, BisOne]);
+            //Second Bishop
+            int BisTwo = randy.Next(4)*2+1;
+            Positions.Remove(BisTwo);
+            Console.Write(BisTwo);
+            this[0, BisTwo].Figure = new BishopFigure(true, this[0, BisTwo]);
+            this[7, BisTwo].Figure = new BishopFigure(false, this[7, BisTwo]);
+            //queen
+            int queen = Positions[randy.Next(Positions.Count())];
+            Positions.Remove(queen);
+            Console.Write(queen);
+            this[0, queen].Figure = new QueenFigure(true, this[0, queen]);
+            this[7, queen].Figure = new QueenFigure(false, this[7, queen]);
+            //First Knight
+            int knightOne = Positions[randy.Next(Positions.Count())];
+            Positions.Remove(knightOne);
+            Console.Write(knightOne);
+            this[0, knightOne].Figure = new KnightFigure(true, this[0, knightOne]);
+            this[7, knightOne].Figure = new KnightFigure(false, this[7, knightOne]);
+            //Second Knight
+            int knightTwo = Positions[randy.Next(Positions.Count())];
+            Positions.Remove(knightTwo);
+            Console.Write(knightTwo);
+            this[0, knightTwo].Figure = new KnightFigure(true, this[0, knightTwo]);
+            this[7, knightTwo].Figure = new KnightFigure(false, this[7, knightTwo]);
+
+            //Left Rooks
+            Console.Write(Positions[0]);
+            this[0, Positions[0]].Figure = new RookFigure(true, this[0, Positions[0]]);
+            this[7, Positions[0]].Figure = new RookFigure(false, this[7, Positions[0]]);
+
+            //Center Kings
+            Console.Write(Positions[1]);
+            this[0, Positions[1]].Figure = new KingFigure(true, this[0, Positions[1]]);
+            this[7, Positions[1]].Figure = new KingFigure(false, this[7, Positions[1]]);
+
+            //Right Rooks
+            Console.Write(Positions[2]);
+            this[0, Positions[2]].Figure = new RookFigure(true, this[0, Positions[2]]);
+            this[7, Positions[2]].Figure = new RookFigure(false, this[7, Positions[2]]);
+
+        }
+
         /// <summary>
         /// Get possible turns for figure in cell
         /// </summary>
@@ -155,7 +207,6 @@ namespace WpfChess.ChessModel
                 this[1, i].Figure = new PawnFigure(true, this[1, i]);
                 this[6, i].Figure = new PawnFigure(false, this[6, i]);
             }
-
             //Rook
             this[0, 0].Figure = new RookFigure(true, this[0, 0]);
             this[0, 7].Figure = new RookFigure(true, this[0, 7]);

@@ -28,12 +28,13 @@ namespace WpfChess.WpfPresentation.Model
 
         #region Public members
         public void StartNewGame(GameConfigData gameConfigData)
-        {//SAOFNODSNODISNGODING
+        {//FieldMaking
+            Field field = new Field();
             if(gameConfigData.GameMode == GameMode.Mode960)
             {
-
+                field.Make960();
+                System.Console.WriteLine();
             }
-            Field field = new Field();
             FieldViewModel fieldViewModel = new FieldViewModel(field, GetInputController(gameConfigData, field));
 
             MainWindow window = new MainWindow();
